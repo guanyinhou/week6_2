@@ -1,0 +1,193 @@
+#app {
+    font-family: microsoft jhenghei, Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    #nav {
+        padding: 30px;  
+        a {
+          font-weight: bold;
+          color: #2c3e50;
+      
+          &.router-link-exact-active {
+            color: #42b983;
+          }
+        }
+    }
+    h1 {
+        margin-bottom: 50px;
+    }
+    .page{
+        position: relative;
+    }
+    .prod-list {
+        list-style: none;
+        padding-left: 0;
+        li {
+          padding: 10px 15px 20px;
+          border: 2px solid transparent;
+          transition: all 0.4s;
+          border-radius: 10px;
+          position: relative;
+          &:hover {
+            border-color: #42b983;
+            .add-to-cart {
+              display: block;
+            }
+          }
+          .add-to-cart {
+            display: none;
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 35px;
+            border-radius: 40px;
+            right: 15px;
+            bottom: 20px;
+            background-color: #42b983;
+            color: #fff;
+            border: 2px solid #42b983;
+            transition: all 0.4s;
+            &:hover {
+              background-color: #fff;
+              color: #42b983;
+            }
+          }
+          a {
+            &:hover {
+              text-decoration: none;
+            }
+            .prod-image {
+              img {
+                width: 100%;
+              }
+            }
+            .prod-origin-price {
+              text-decoration: line-through;
+              color: #aaa;
+              font-size: 14px;
+            }
+            .prod-price {
+              color: red;
+            }
+          }
+        }
+    }
+    #back-to-top{
+        position: fixed;
+        bottom: 40px;
+        right: 20px;
+        z-index: 9999;
+        width: 32px;
+        height: 0px;
+        text-align: center;
+        background-color: #42b983;
+        color: #fff;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.2s ease-out;
+        opacity: 0;
+        // display: none;
+        i{
+            display: none;
+            line-height: 27px;
+        }
+        &:hover{
+            color: #42b983;
+            background-color: #fff;
+        }
+        &.show{
+            opacity: 1;
+            // display: block;
+            height: 32px;
+            border: 1px solid #42b983;
+            border-radius: 3px;
+            i{
+                display: block;
+            }
+        }
+    }
+    .btn{
+        background-color: #42b983;
+        color: #fff;
+        border: 1px solid #42b983;
+        transition: all 0.4s;
+        &:hover{
+            color: #42b983;
+            background-color: #fff;
+        }
+    }
+    .login{
+        margin-top: 100px;
+    }
+    .products{
+        .table-bordered{
+            margin-bottom: 60px;
+            table{
+                width: 100%;
+            }
+        }
+    }
+    .cart-area{
+        table{
+            td{
+                vertical-align: middle;
+            }
+        }
+    }
+    .dashboard{
+        #nav{
+            .btn{
+                margin-left: 30px;
+            }
+        }
+    }
+    .products-list{
+        .container{
+            position: relative;
+            &>.btn{
+                position: absolute;
+                right: 15px;
+                top: 5px;
+            }
+        }
+    }
+    #prodModal{
+        .modal-body{
+            .form-group{
+                .ckbox{
+                    input{
+                        float: left;
+                        margin-top: 5px;
+                        margin-right: 5px;
+                    }
+                }
+                label{
+                    float: left;
+                }
+                img{
+                    width: 100%;
+                }
+            }
+        }
+    }
+    .main-color{
+        color: #42b983;
+    }
+    .page-link{
+        color: #42b983;
+    }
+    .page-item.active .page-link{
+        color: #fff;
+        border-color: #42b983;
+        background-color: #42b983;
+    }
+    .table-bordered th, .table-bordered td{
+        padding: 8px;
+    }
+    .btn-edit{
+        margin-right: 12px;
+    }
+}  

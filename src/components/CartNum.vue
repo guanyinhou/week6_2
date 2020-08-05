@@ -1,39 +1,10 @@
 <template>
-  <div class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png" /> -->
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
-    <div id="nav">
-      <router-link to="/">前台首頁</router-link> |
-      <router-link to="/about">關於我們</router-link> |
-      <router-link to="/products">產品列表</router-link> |
-      <router-link to="/cart">
-        購物車(<span class="cart-num"> {{ cartNum }} </span>)
-      </router-link>
-      |
-      <router-link to="/checkout">結帳</router-link> |
-      <router-link to="/checkout_finish">結帳完成</router-link> |
-      <router-link to="/admin">管理後台</router-link>
-    </div>
-    <router-view></router-view>
-  </div>
+  <span class="cart-num"> {{ cartNum }} </span>
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from "@/components/HelloWorld.vue";
-// import CartNum from "@/components/CartNum.vue";
-
-// export default {
-//   name: "Home",
-//   components: {
-//     HelloWorld
-//   }
-// };
-// import axios from "axios";
-// import data from "../../src/assets/js/data";
 import axios from "axios";
 export default {
-  name: "Home",
   data() {
     return {
       prods: [],

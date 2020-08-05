@@ -1,6 +1,30 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+
+    <!-- 開始：Bootstrap alert -->
+    <div class="container">
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+    <!-- 結束：Bootstrap alert -->
+
+    <!-- Bootstrap Tooltip -->
+    <button
+      type="button"
+      class="btn btn-secondary"
+      data-toggle="tooltip"
+      data-placement="top"
+      title="Tooltip on top"
+    >
+      Tooltip on top
+    </button>
+    <!-- /Bootstrap Tooltip -->
+
     <p>
       For a guide and recipes on how to configure / customize this project,<br />
       check out the
@@ -95,10 +119,17 @@
 </template>
 
 <script>
+import $ from "jquery";
 export default {
   name: "HelloWorld",
   props: {
     msg: String
+  },
+  mounted() {
+    // STEP 2：在 mounted 時初始化 tooltip
+    $(function() {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
   }
 };
 </script>
