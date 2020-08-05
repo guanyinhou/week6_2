@@ -9,5 +9,7 @@ module.exports = {
         "windows.jQuery": "jquery"
       })
     ]
-  }
+  },
+
+  publicPath: '/week6_2/dist/'
 };
