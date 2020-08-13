@@ -23,6 +23,39 @@
   margin-bottom: 50px;
 }
 
+#app .home .product {
+  margin-bottom: 60px;
+}
+
+#app .home .product .prod-price {
+  color: red;
+}
+
+#app .home .product .add-to-cart {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 479px) {
+  #app .home .product .prod-img img {
+    width: 100%;
+  }
+}
+
+#app .home .product .prod-content {
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+#app .home .product .prod-content .sub-title {
+  display: block;
+  border-bottom: 1px solid #000;
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
 #app .page {
   position: relative;
 }
@@ -154,6 +187,14 @@
 
 #app .cart-area table td {
   vertical-align: middle;
+}
+
+#app .cart-area table thead tr th {
+  white-space: nowrap;
+}
+
+#app .cart-area table tbody .prod-price {
+  white-space: nowrap;
 }
 
 #app .dashboard #nav .btn {

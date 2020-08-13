@@ -43,7 +43,7 @@
                         class="btn"
                         type="button"
                         :disabled="
-                          (item.quantity === 1,
+                          (item.quantity <= 1,
                           status.loadingNum === item.product.id)
                         "
                         @click="
@@ -80,6 +80,14 @@
                 <td>{{ item.product.unit }}</td>
                 <td class="prod-price">
                   $ {{ item.product.price | thousands }}
+                </td>
+              </tr>
+              <tr>
+                <td class="text-right" colspan="4">
+                  <span class="total-word">總數</span>
+                </td>
+                <td class="text-center prod-price">
+                  {{ cartNum }}
                 </td>
               </tr>
             </tbody>
@@ -136,8 +144,14 @@ export default {
           console.log(res);
           this.carts = res.data.data;
           this.cartTotal = 0;
-          this.cartNum = res.data.data.length;
+          // this.cartNum = res.data.data.length;
+          this.cartNum = 0;
+          this.carts.forEach(item => {
+            console.log(item.quantity);
+            this.cartNum += item.quantity;
+          });
           // this.$set(this.cartNum, "cartNum", this.cartNum);
+          console.log(this.cartNum);
           this.updateCartTotal();
         })
         .catch(err => {
@@ -153,12 +167,21 @@ export default {
       // 等同addToCart
       // 加速數量選擇
       this.status.loadingNum = id;
+      console.log(this.status.loadingNum);
       const url = `${this.apiPath}/api/${this.uuid}/ec/shopping`;
       const cart = {
         product: id,
         quantity: qty
       };
       console.log(cart);
+      console.log(cart.quantity);
+      if (cart.quantity <= 0) {
+        alert("請輸入大於1的數字");
+        this.$set(cart, "quantity", 1);
+      }
+      this.getCart();
+      console.log(cart);
+      console.log(cart.quantity);
       axios
         .patch(url, cart)
         .then(res => {
@@ -166,8 +189,9 @@ export default {
           this.status.loadingNum = "";
           console.log(res);
           this.cartTotal = 0;
-          this.cartNum = res.data.data.length;
+          // this.cartNum = res.data.data.length;
           this.updateCartTotal();
+          this.getCart();
         })
         .catch(err => {
           console.log(err);

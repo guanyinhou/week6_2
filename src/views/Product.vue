@@ -10,7 +10,7 @@
         <h2>特價 $ {{ prod.price }}</h2>
       </div>
       <div class="add-to-cart">
-        <button class="btn add-to-cart" @click="addToCart(prod.id)">
+        <button class="btn" @click="addToCart(prod.id)">
           加入購物車
         </button>
       </div>
@@ -25,27 +25,6 @@
     </div>
   </div>
 </template>
-
-<style lang="scss">
-.product {
-  margin-bottom: 60px;
-  .prod-price {
-    color: red;
-  }
-  .prod-content {
-    text-align: left;
-    margin-bottom: 30px;
-    .sub-title {
-      display: block;
-      border-bottom: 1px solid #000;
-      margin-bottom: 15px;
-      padding-bottom: 5px;
-      font-weight: bold;
-      font-size: 18px;
-    }
-  }
-}
-</style>
 
 <script>
 import $ from "jquery";
