@@ -68,7 +68,7 @@ export default {
           console.log(err.response.data.errors[0]);
           // alert(err.response.data.errors[0]);
           // eslint-disable-next-line no-undef
-          swal(err.response.data.errors[0], "", "danger");
+          swal(err.response.data.errors[0], "", "info");
           // $("#modal").modal("hide");
         });
     },
