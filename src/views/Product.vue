@@ -55,6 +55,8 @@ export default {
         .then(res => {
           this.isLoading = false;
           console.log(res);
+          // eslint-disable-next-line no-undef
+          swal(`${res.data.data.product.title}已加入購物車`);
           this.$bus.$emit("get-cart-num");
           // $("#modal").modal("hide");
           this.getCart();

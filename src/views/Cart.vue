@@ -198,6 +198,8 @@ export default {
           this.status.loadingNum = "";
           console.log(res);
           this.cartPageTotalNum = 0;
+          // eslint-disable-next-line no-undef
+          swal(`${res.data.data.product.title}已刪除`);
           this.$bus.$emit("get-cart-num");
           this.getCart();
         })
@@ -208,17 +210,31 @@ export default {
     rmCartAllItem() {
       const url = `${this.apiPath}/api/${this.uuid}/ec/shopping/all/product`;
 
-      axios
-        .delete(url)
-        .then(res => {
-          console.log(res);
-          this.cartPageTotalNum = 0;
-          this.$bus.$emit("get-cart-num");
-          this.getCart();
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      // eslint-disable-next-line no-undef
+      swal({
+        title: "要刪除所有商品嗎？",
+        // text: "Once deleted, you will not be able to recover this imaginary file!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      }).then(willDelete => {
+        if (willDelete) {
+          axios
+            .delete(url)
+            .then(res => {
+              console.log(res);
+              this.cartPageTotalNum = 0;
+              this.$bus.$emit("get-cart-num");
+              this.getCart();
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        } else {
+          // eslint-disable-next-line no-undef
+          // swal("Your imaginary file is safe!");
+        }
+      });
     }
   },
   created() {

@@ -54,7 +54,7 @@ export default {
     },
     signout() {
       document.cookie = `tokenName=; expires=; path=/`;
-      window.location = "/";
+      window.location = "/week6_2/dist/";
     }
   }
 };
