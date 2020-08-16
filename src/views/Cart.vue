@@ -164,7 +164,14 @@ export default {
         quantity
       };
       if (cart.quantity < 1) {
-        alert("請輸入大於1的數字");
+        // alert("請輸入大於1的數字");
+        // eslint-disable-next-line no-undef
+        swal({
+          title: "請輸入大於1的數字",
+          icon: "info",
+          buttons: false,
+          timer: 3000
+        });
         this.$set(cart, "quantity", 1);
         this.getCart();
       }
@@ -197,7 +204,12 @@ export default {
           // 加速數量選擇
           this.status.loadingNum = "";
           // eslint-disable-next-line no-undef
-          swal(res.data.message, "", "success");
+          swal({
+            title: res.data.message,
+            icon: "success",
+            buttons: false,
+            timer: 3000
+          });
           console.log(res);
           this.cartPageTotalNum = 0;
           this.$bus.$emit("get-cart-num");
@@ -213,7 +225,6 @@ export default {
       // eslint-disable-next-line no-undef
       swal({
         title: "要刪除所有商品嗎？",
-        // text: "Once deleted, you will not be able to recover this imaginary file!",
         icon: "warning",
         buttons: true,
         dangerMode: true
@@ -223,6 +234,13 @@ export default {
             .delete(url)
             .then(res => {
               console.log(res);
+              // eslint-disable-next-line no-undef
+              swal({
+                title: "已清空購物車",
+                icon: "info",
+                buttons: false,
+                timer: 3000
+              });
               this.cartPageTotalNum = 0;
               this.$bus.$emit("get-cart-num");
               this.getCart();
