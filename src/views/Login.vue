@@ -69,7 +69,7 @@ export default {
           document.cookie = `tokenName=${token}; expires=${new Date(
             expired * 1000
           )}; path=/`;
-          //   window.location = "./dashboard/Index.vue";
+          // window.location = "./dashboard/Index.vue";
           this.$router.push("admin");
         })
         .catch(err => {
@@ -78,6 +78,7 @@ export default {
     },
     signout() {
       document.cookie = "tokenName=;expire=;";
+      window.location = "/";
     },
     getData() {
       // 取得 token 的 cookies (注意取得的時間點)

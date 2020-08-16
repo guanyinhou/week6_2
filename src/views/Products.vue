@@ -23,19 +23,17 @@
         </li>
       </ul>
     </div>
-    <div is="gototop"><cartNum /></div>
+    <div is="gototop"></div>
   </div>
 </template>
 
 <script>
-import $ from "jquery";
+// import $ from "jquery";
 import axios from "axios";
 import gototop from "../components/Gototop";
-import cartNum from "../components/CartNum";
 export default {
   components: {
-    gototop,
-    cartNum
+    gototop
   },
   data() {
     return {
@@ -62,8 +60,9 @@ export default {
         .then(res => {
           this.isLoading = false;
           console.log(res);
-          $("#modal").modal("hide");
-          this.getCart();
+          this.$bus.$emit("get-cart-num");
+          // $("#modal").modal("hide");
+          // this.getCart();
         })
         .catch(err => {
           this.isLoading = false;
@@ -71,7 +70,7 @@ export default {
           console.log(err.response);
           console.log(err.response.data.errors[0]);
           alert(err.response.data.errors[0]);
-          $("#modal").modal("hide");
+          // $("#modal").modal("hide");
         });
     },
     getCart() {
@@ -83,7 +82,7 @@ export default {
           this.isLoading = false;
           console.log(res);
           this.carts = res.data.data;
-          this.cartNum = res.data.data.length;
+          // this.cartNum = res.data.data.length;
           this.cartTotal = 0;
           this.updateCartTotal();
         })

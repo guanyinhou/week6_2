@@ -18,6 +18,8 @@ Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 Vue.component("Loading", Loading);
 Vue.filter("thousands", thousandsFilter);
+// Event bus
+Vue.prototype.$bus = new Vue();
 
 new Vue({
   router,

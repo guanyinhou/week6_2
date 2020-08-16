@@ -25,11 +25,7 @@
             <tbody>
               <tr v-for="item in carts" :key="item.product.id + 1">
                 <td>
-                  <button
-                    class="btn"
-                    @click="rmCartItem(item.product.id)"
-                    :disabled="status.loadingNum === item.product.id"
-                  >
+                  <button class="btn" @click="rmCartItem(item.product.id)">
                     <i class="fa fa-trash"></i>
                   </button>
                 </td>
@@ -42,10 +38,7 @@
                       <button
                         class="btn"
                         type="button"
-                        :disabled="
-                          (item.quantity <= 1,
-                          status.loadingNum === item.product.id)
-                        "
+                        :disabled="item.quantity <= 1"
                         @click="
                           item.quantity--;
                           updateQuantity(item.product.id, item.quantity);
@@ -60,7 +53,6 @@
                       v-model="item.quantity"
                       min="1"
                       @change="updateQuantity(item.product.id, item.quantity)"
-                      :disabled="status.loadingNum === item.product.id"
                     />
                     <div class="input-group-prepend">
                       <button
@@ -70,8 +62,8 @@
                           item.quantity++;
                           updateQuantity(item.product.id, item.quantity);
                         "
-                        :disabled="status.loadingNum === item.product.id"
                       >
+                        <!-- :disabled="status.loadingNum === item.product.id" -->
                         <i class="fa fa-plus"></i>
                       </button>
                     </div>
@@ -87,7 +79,7 @@
                   <span class="total-word">總數</span>
                 </td>
                 <td class="text-center prod-price">
-                  {{ cartNum }}
+                  {{ cartPageTotalNum }}
                 </td>
               </tr>
             </tbody>
@@ -118,19 +110,19 @@ export default {
   },
   data() {
     return {
-      prods: [],
+      // prods: [],
+      cartPageTotalNum: 0,
       isLoading: false,
       tempData: {},
       status: {
-        loadingItem: "",
+        // loadingItem: "",
         // 加速數量選擇
         loadingNum: ""
       },
       carts: [],
       cartTotal: 0,
       uuid: "bba8c8a3-a5f2-4a81-91ef-9273532ebb26",
-      apiPath: "https://course-ec-api.hexschool.io",
-      cartNum: 0
+      apiPath: "https://course-ec-api.hexschool.io"
     };
   },
   methods: {
@@ -143,15 +135,13 @@ export default {
           this.isLoading = false;
           console.log(res);
           this.carts = res.data.data;
-          this.cartTotal = 0;
-          // this.cartNum = res.data.data.length;
-          this.cartNum = 0;
+          // this.$bus.$emit("get-cart-num");
+          this.cartPageTotalNum = 0;
           this.carts.forEach(item => {
-            console.log(item.quantity);
-            this.cartNum += item.quantity;
+            this.cartPageTotalNum += item.quantity;
+            // console.log(this.cartPageTotalNum);
           });
-          // this.$set(this.cartNum, "cartNum", this.cartNum);
-          console.log(this.cartNum);
+          this.cartTotal = 0;
           this.updateCartTotal();
         })
         .catch(err => {
@@ -163,7 +153,7 @@ export default {
         this.cartTotal += item.product.price * item.quantity;
       });
     },
-    updateQuantity(id, qty) {
+    updateQuantity(id, quantity) {
       // 等同addToCart
       // 加速數量選擇
       this.status.loadingNum = id;
@@ -171,15 +161,13 @@ export default {
       const url = `${this.apiPath}/api/${this.uuid}/ec/shopping`;
       const cart = {
         product: id,
-        quantity: qty
+        quantity
       };
-      console.log(cart);
-      console.log(cart.quantity);
-      if (cart.quantity <= 0) {
+      if (cart.quantity < 1) {
         alert("請輸入大於1的數字");
         this.$set(cart, "quantity", 1);
+        this.getCart();
       }
-      this.getCart();
       console.log(cart);
       console.log(cart.quantity);
       axios
@@ -188,8 +176,10 @@ export default {
           // 加速數量選擇
           this.status.loadingNum = "";
           console.log(res);
+          // console.log(this.carts.length);
           this.cartTotal = 0;
-          // this.cartNum = res.data.data.length;
+          this.cartPageTotalNum = 0;
+          this.$bus.$emit("get-cart-num");
           this.updateCartTotal();
           this.getCart();
         })
@@ -207,7 +197,8 @@ export default {
           // 加速數量選擇
           this.status.loadingNum = "";
           console.log(res);
-          this.cartNum = res.data.data.length;
+          this.cartPageTotalNum = 0;
+          this.$bus.$emit("get-cart-num");
           this.getCart();
         })
         .catch(err => {
@@ -221,7 +212,8 @@ export default {
         .delete(url)
         .then(res => {
           console.log(res);
-          this.cartNum = res.data.data.length;
+          this.cartPageTotalNum = 0;
+          this.$bus.$emit("get-cart-num");
           this.getCart();
         })
         .catch(err => {

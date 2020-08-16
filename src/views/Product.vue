@@ -27,12 +27,12 @@
 </template>
 
 <script>
-import $ from "jquery";
+// import $ from "jquery";
 import axios from "axios";
 export default {
   data() {
     return {
-      prods: [],
+      prod: [],
       isLoading: false,
       uuid: "bba8c8a3-a5f2-4a81-91ef-9273532ebb26",
       apiPath: "https://course-ec-api.hexschool.io",
@@ -55,7 +55,8 @@ export default {
         .then(res => {
           this.isLoading = false;
           console.log(res);
-          $("#modal").modal("hide");
+          this.$bus.$emit("get-cart-num");
+          // $("#modal").modal("hide");
           this.getCart();
         })
         .catch(err => {
@@ -64,7 +65,7 @@ export default {
           console.log(err.response);
           console.log(err.response.data.errors[0]);
           alert(err.response.data.errors[0]);
-          $("#modal").modal("hide");
+          // $("#modal").modal("hide");
         });
     },
     getCart() {
@@ -76,7 +77,7 @@ export default {
           this.isLoading = false;
           console.log(res);
           this.carts = res.data.data;
-          this.cartNum = res.data.data.length;
+          // this.cartNum = res.data.data.length;
           this.cartTotal = 0;
           this.updateCartTotal();
         })
