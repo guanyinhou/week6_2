@@ -196,10 +196,10 @@ export default {
         .then(res => {
           // 加速數量選擇
           this.status.loadingNum = "";
+          // eslint-disable-next-line no-undef
+          swal(`${res.data.message}`, "success");
           console.log(res);
           this.cartPageTotalNum = 0;
-          // eslint-disable-next-line no-undef
-          swal(`${res.data.data.product.title}已刪除`);
           this.$bus.$emit("get-cart-num");
           this.getCart();
         })
