@@ -241,9 +241,14 @@
         -moz-appearance: textfield;
     }
 }  
-.swal-title{
-    font-family: microsoft jhenghei, Avenir, Helvetica, Arial, sans-serif;
-    &:last-child{
-        padding-bottom: 32px;
+.swal-overlay{
+    .swal-modal{
+        .swal-title{
+            font-family: microsoft jhenghei, Avenir, Helvetica, Arial, sans-serif;
+            &:last-child{
+                padding-bottom: 32px;
+            }
+        }
     }
 }
+
