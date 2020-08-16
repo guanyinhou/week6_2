@@ -11,5 +11,5 @@ module.exports = {
     ]
   },
 
-  publicPath: "./week6_2/dist/"
+  publicPath: "/week6_2/dist/"
 };
