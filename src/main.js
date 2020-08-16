@@ -7,7 +7,7 @@ import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap";
-import "font-awesome/css/font-awesome.css";
+// import "font-awesome/css/font-awesome.css";
 import thousandsFilter from "./assets/js/thousands";
 // import $ from "jquery";
 // 讓瀏覽器的全域環境可以使用到 $
