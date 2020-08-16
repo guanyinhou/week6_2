@@ -197,7 +197,7 @@ export default {
           // 加速數量選擇
           this.status.loadingNum = "";
           // eslint-disable-next-line no-undef
-          swal(`${res.data.message}`, "success");
+          swal(res.data.message, "", "success");
           console.log(res);
           this.cartPageTotalNum = 0;
           this.$bus.$emit("get-cart-num");

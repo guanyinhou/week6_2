@@ -61,7 +61,7 @@ export default {
           this.isLoading = false;
           console.log(res);
           // eslint-disable-next-line no-undef
-          swal("您選購的商品已加入購物車", "success");
+          swal(res.data.data.product.title + "已加入購物車", "", "success");
           this.$bus.$emit("get-cart-num");
           // $("#modal").modal("hide");
           // this.getCart();
@@ -73,7 +73,7 @@ export default {
           console.log(err.response.data.errors[0]);
           // alert(err.response.data.errors[0]);
           // eslint-disable-next-line no-undef
-          swal("err.response.data.errors[0]", "danger");
+          swal(err.response.data.errors[0], "", "danger");
           // $("#modal").modal("hide");
         });
     },
