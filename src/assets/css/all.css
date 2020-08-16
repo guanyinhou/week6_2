@@ -246,4 +246,21 @@
 #app .btn-edit {
   margin-right: 12px;
 }
+
+#app input::-webkit-outer-spin-button,
+#app input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+#app input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.swal-overlay .swal-modal .swal-title {
+  font-family: microsoft jhenghei, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.swal-overlay .swal-modal .swal-title:last-child {
+  padding-bottom: 32px;
+}
 /*# sourceMappingURL=all.css.map */
