@@ -240,4 +240,10 @@
     input[type="number"]{
         -moz-appearance: textfield;
     }
+    .swal-title{
+        font-family: microsoft jhenghei, Avenir, Helvetica, Arial, sans-serif;
+        &:last-child{
+            padding-bottom: 32px;
+        }
+    }
 }  
