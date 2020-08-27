@@ -16,7 +16,7 @@
       </div>
       <div class="prod-content">
         <div class="sub-title">產品介紹</div>
-        <p>{{ prod.content }}</p>
+        {{ prod.content }}
       </div>
       <div class="prod-content">
         <div class="sub-title">產品材質</div>
