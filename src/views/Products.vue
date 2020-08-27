@@ -7,7 +7,7 @@
         <li v-for="prod in prods" :key="prod.id" class="col-sm-3">
           <router-link :to="`/product/${prod.id}`">
             <div class="prod-image">
-              <img :src="prod.imageUrl" :alt="prod.title" />
+              <img :src="prod.imageUrl[0]" :alt="prod.title" />
             </div>
             <div class="prod-title">{{ prod.title }}</div>
             <div class="prod-origin-price">

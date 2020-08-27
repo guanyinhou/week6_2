@@ -3,8 +3,8 @@
     <loading :active.sync="isLoading"></loading>
     <div class="container">
       <h1>{{ prod.title }}</h1>
-      <div class="prod-img">
-        <img :src="prod.imageUrl" :alt="prod.title" />
+      <div class="prod-img" v-for="(item, idx) in 5" :key="idx">
+        <img :src="prod.imageUrl[idx]" />
       </div>
       <div class="prod-price">
         <h2>特價 $ {{ prod.price }}</h2>
