@@ -154,6 +154,7 @@ export default {
       });
     },
     updateQuantity(id, quantity) {
+      if (quantity <= 0) return;
       // 等同addToCart
       // 加速數量選擇
       this.status.loadingNum = id;
@@ -163,18 +164,18 @@ export default {
         product: id,
         quantity
       };
-      if (cart.quantity < 1) {
-        // alert("請輸入大於1的數字");
-        // eslint-disable-next-line no-undef
-        swal({
-          title: "請輸入大於1的數字",
-          icon: "info",
-          buttons: false,
-          timer: 3000
-        });
-        this.$set(cart, "quantity", 1);
-        this.getCart();
-      }
+      // if (cart.quantity < 1) {
+      //   // alert("請輸入大於1的數字");
+      //   // eslint-disable-next-line no-undef
+      //   swal({
+      //     title: "請輸入大於1的數字",
+      //     icon: "info",
+      //     buttons: false,
+      //     timer: 3000
+      //   });
+      //   this.$set(cart, "quantity", 1);
+      //   this.getCart();
+      // }
       console.log(cart);
       console.log(cart.quantity);
       axios

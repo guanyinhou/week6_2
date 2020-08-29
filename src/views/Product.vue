@@ -6,9 +6,17 @@
       <div class="prod-img" v-for="(item, idx) in 5" :key="idx">
         <img :src="prod.imageUrl[idx]" />
       </div>
-      <div class="prod-price">
-        <h2>特價 $ {{ prod.price }}</h2>
+      <div class="prod-origin-price" v-if="prod.origin_price === prod.price">
+        售價 $ {{ prod.origin_price | thousands }}
       </div>
+      <span v-else>
+        <div class="prod-origin-price old-price">
+          售價 $ {{ prod.origin_price | thousands }}
+        </div>
+        <div class="prod-price">
+          <h2>特價 $ {{ prod.price | thousands }}</h2>
+        </div>
+      </span>
       <div class="add-to-cart">
         <button class="btn" @click="addToCart(prod.id)">
           加入購物車

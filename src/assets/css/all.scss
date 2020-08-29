@@ -21,6 +21,14 @@
     .home{
         .product {
             margin-bottom: 60px;
+            .prod-origin-price {
+                font-size: 20px;
+                color: #000;
+                &.old-price{
+                  text-decoration: line-through;
+                  color: #aaa;
+                }
+            }
             .prod-price {
                 color: red;
             }
@@ -107,9 +115,12 @@
               }
             }
             .prod-origin-price {
-              text-decoration: line-through;
-              color: #aaa;
               font-size: 14px;
+              color: #000;
+              &.old-price{
+                text-decoration: line-through;
+                color: #aaa;
+              }
             }
             .prod-price {
               color: red;

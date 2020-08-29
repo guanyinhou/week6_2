@@ -10,12 +10,23 @@
               <img :src="prod.imageUrl[0]" :alt="prod.title" />
             </div>
             <div class="prod-title">{{ prod.title }}</div>
-            <div class="prod-origin-price">
-              原價&nbsp;&nbsp;&nbsp;&nbsp;$ {{ prod.origin_price | thousands }}
+            <div
+              class="prod-origin-price"
+              v-if="prod.origin_price === prod.price"
+            >
+              售價&nbsp;&nbsp;&nbsp;&nbsp;$ {{ prod.origin_price | thousands }}
             </div>
-            <div class="prod-price">
-              <b>特價&nbsp;&nbsp;&nbsp;&nbsp;$ {{ prod.price | thousands }}</b>
-            </div>
+            <span v-else>
+              <div class="prod-origin-price old-price">
+                售價&nbsp;&nbsp;&nbsp;&nbsp;$
+                {{ prod.origin_price | thousands }}
+              </div>
+              <div class="prod-price">
+                <b>
+                  特價&nbsp;&nbsp;&nbsp;&nbsp;$ {{ prod.price | thousands }}
+                </b>
+              </div>
+            </span>
           </router-link>
           <a href="#" class="add-to-cart" @click.prevent="addToCart(prod.id)">
             <i class="fa fa-cart-plus"></i>
